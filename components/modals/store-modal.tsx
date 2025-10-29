@@ -11,6 +11,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -34,8 +35,11 @@ export const StoreModal = () => {
       const response = await axios.post("/api/stores", values);
 
       console.log(response.data);
+      toast.success("Berhasil Membuat Toko");
+      window.location.assign(`/${response.data.id}`);
     } catch (error) {
       console.log(error);
+      toast.error("Gagal Membuat Toko");
     } finally {
       setLoading(false);
     }
@@ -70,6 +74,7 @@ export const StoreModal = () => {
               />
               <div className="pt-6 space-x-2 flex items-center justify-end w-full">
                 <Button
+                  type="button"
                   variant="outline"
                   onClick={storeModal.onClose}
                   disabled={loading}
