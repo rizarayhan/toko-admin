@@ -5,15 +5,15 @@ import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { BannerColumn, columns } from "./columns";
+import { CategoryColumn, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
 import { ApiList } from "@/components/ui/api-list";
 
-interface BannerClientProps {
-  data: BannerColumn[];
+interface CategoryClientProps {
+  data: CategoryColumn[];
 }
 
-export const BannerClient: React.FC<BannerClientProps> = ({ data }) => {
+export const CategoryClient: React.FC<CategoryClientProps> = ({ data }) => {
   const router = useRouter();
   const params = useParams();
 
@@ -21,10 +21,10 @@ export const BannerClient: React.FC<BannerClientProps> = ({ data }) => {
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Banner (${data.length})`}
-          description="Atur Banner Untuk Toko"
+          title={`Category (${data.length})`}
+          description="Atur Category Untuk Toko"
         />
-        <Button onClick={() => router.push(`/${params.storeId}/banners/new`)}>
+        <Button onClick={() => router.push(`/${params.storeId}/categories/new`)}>
           <Plus className="mr-2 h-4 w-4" />
           Add New
         </Button>
@@ -34,17 +34,17 @@ export const BannerClient: React.FC<BannerClientProps> = ({ data }) => {
       <DataTable
         data={data}
         columns={columns}
-        searchKey="label"
+        searchKey="name"
       />
 
       <Heading
         title="API"
-        description="API untuk Banners"
+        description="API untuk Categories"
       />
       <Separator />
       <ApiList
-        namaIndikator="banners"
-        idIndikator="bannerId"
+        namaIndikator="categories"
+        idIndikator="categoryId"
       />
     </>
   );
