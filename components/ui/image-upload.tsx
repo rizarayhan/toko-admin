@@ -57,7 +57,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ disabled, onChange, onRemove,
         ))}
       </div>
       <CldUploadWidget
-        onSuccess={onUpload}
+        onUpload={onUpload}
         uploadPreset="jdkkly7t"
       >
         {({ open }) => {
